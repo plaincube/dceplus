@@ -1,7 +1,11 @@
 package net.minecraft.client.renderer;
 
+import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.gson.JsonSyntaxException;
+
+import bastion.defiantce.gui.MainMenu;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.FloatBuffer;
@@ -17,13 +21,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiDownloadTerrain;
-import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.MapItemRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.EffectRenderer;
-import net.minecraft.client.renderer.EntityRenderer$1;
-import net.minecraft.client.renderer.EntityRenderer$2;
 import net.minecraft.client.renderer.culling.ClippingHelperImpl;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -2707,9 +2708,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
             }
         }
 
-        if (this.mc.currentScreen instanceof GuiMainMenu)
+        if (this.mc.currentScreen instanceof MainMenu)
         {
-            this.updateMainMenu((GuiMainMenu)this.mc.currentScreen);
+            this.updateMainMenu((MainMenu)this.mc.currentScreen);
         }
 
         if (this.updatedWorld != world)
@@ -2748,7 +2749,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
     }
 
-    private void updateMainMenu(GuiMainMenu p_updateMainMenu_1_)
+    private void updateMainMenu(MainMenu p_updateMainMenu_1_)
     {
         try
         {
@@ -2773,7 +2774,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 return;
             }
 
-            Field[] afield = GuiMainMenu.class.getDeclaredFields();
+            Field[] afield = MainMenu.class.getDeclaredFields();
 
             for (int k = 0; k < afield.length; ++k)
             {
@@ -2829,4 +2830,41 @@ public class EntityRenderer implements IResourceManagerReloadListener
             return this.useShader;
         }
     }
+    
+    class EntityRenderer$1 implements Predicate
+    {
+        final EntityRenderer field_90032_a;
+
+        EntityRenderer$1(EntityRenderer p_i1243_1_)
+        {
+            this.field_90032_a = p_i1243_1_;
+        }
+
+        public boolean apply(Entity p_apply_1_)
+        {
+            return p_apply_1_.canBeCollidedWith();
+        }
+
+        public boolean apply(Object p_apply_1_)
+        {
+            return this.apply((Entity)p_apply_1_);
+        }
+    }
+
+    class EntityRenderer$2 implements Callable
+    {
+        final EntityRenderer field_90025_c;
+        private static final String __OBFID = "CL_00000948";
+
+        EntityRenderer$2(EntityRenderer p_i46419_1_)
+        {
+            this.field_90025_c = p_i46419_1_;
+        }
+
+        public String call() throws Exception
+        {
+            return Minecraft.getMinecraft().currentScreen.getClass().getCanonicalName();
+        }
+    }
+    
 }

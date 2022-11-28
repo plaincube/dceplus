@@ -17,7 +17,7 @@ public class Defiant {
 	
 	public static Defiant instance = new Defiant();	
 
-	public static String name = "DefiantCE", version = "m6 September 2022", creator = "Cube";
+	public static String name = "DefiantCE", version = "o2 Beta", creator = "Cube";
 	
 	public static ModuleManager moduleManager;
 	
