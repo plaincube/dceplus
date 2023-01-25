@@ -1,7 +1,8 @@
 # dceplus
-DefiantCE's custom editions, but they're most likely unstable or not completed.
-Planned versions:
-DCEo2 (OptiFine update, will be released)
-DCEUltm (All plugins that haven't made it to the main DCE fork, even the ones that crash)
+DefiantCE's custom editions, but they're most likely unstable or not completed.  
 
-DCEo2 will be released and made available as a main version soon.
+# Planned versions
+DCEo2 (OptiFine update, will be released)  
+DCEUltm (All plugins that haven't made it to the main DCE fork, even the ones that crash)  
+  
+DCEo2 and DCEReso2 Jan 2023 (Final) is out!  
