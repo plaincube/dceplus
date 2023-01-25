@@ -1,5 +1,7 @@
 package net.minecraft.client.entity;
 
+import bastion.defiantce.Defiant;
+import bastion.defiantce.event.events.EventChat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -295,7 +297,15 @@ public class EntityPlayerSP extends AbstractClientPlayer
      */
     public void sendChatMessage(String message)
     {
-        this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
+    	//DefiantCE
+    	EventChat event = new EventChat(message);
+    	
+    	Defiant.onEvent(event);
+    	
+    	if(event.isCancelled())
+    		return;
+    	
+        this.sendQueue.addToSendQueue(new C01PacketChatMessage(event.getMessage()));
     }
 
     /**
@@ -714,6 +724,9 @@ public class EntityPlayerSP extends AbstractClientPlayer
      */
     public void onLivingUpdate()
     {
+    	//Defiant
+    	Defiant.moduleManager.onUpdate();    	
+    	
         if (this.sprintingTicksLeft > 0)
         {
             --this.sprintingTicksLeft;

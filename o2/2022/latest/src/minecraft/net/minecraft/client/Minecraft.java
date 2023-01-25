@@ -563,6 +563,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.checkGLError("Post startup");
         this.ingameGUI = new GuiIngame(this);
 
+        //Defiant
+        Defiant.startClient();
+        
         if (this.serverName != null)
         {
             this.displayGuiScreen(new GuiConnecting(new MainMenu(), this, this.serverName, this.serverPort));
@@ -1923,6 +1926,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                     }
                     else
                     {
+                    	//Defiant
+                    	Defiant.moduleManager.onKey(k);
+                    	
                         if (k == 1)
                         {
                             this.displayInGameMenu();
@@ -2318,6 +2324,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         networkmanager.sendPacket(new C00Handshake(47, socketaddress.toString(), 0, EnumConnectionState.LOGIN));
         networkmanager.sendPacket(new C00PacketLoginStart(this.getSession().getProfile()));
         this.myNetworkManager = networkmanager;
+        
+        //Defiant
+        Defiant.getDiscordRP().update("Playing SinglePlayer", "In Game");
     }
 
     /**

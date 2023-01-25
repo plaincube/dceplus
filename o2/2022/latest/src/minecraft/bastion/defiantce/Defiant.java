@@ -17,7 +17,7 @@ public class Defiant {
 	
 	public static Defiant instance = new Defiant();	
 
-	public static String name = "DefiantCE", version = "o2 Beta", creator = "Cube";
+	public static String name = "DefiantCE", version = "o2 January 2023 (Final)", creator = "Cube";
 	
 	public static ModuleManager moduleManager;
 	
@@ -42,8 +42,6 @@ public class Defiant {
 		discordRP.start();
 		
 		System.out.println("DefiantCE has started (main menu loaded).");
-		
-		Display.setTitle(name + " " + version);
 		
 	}
 	

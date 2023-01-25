@@ -2,6 +2,8 @@ package net.minecraft.block;
 
 import java.util.List;
 import java.util.Random;
+
+import bastion.defiantce.module.render.Xray;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -465,6 +467,38 @@ public class Block
 
     public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
     {
+    	//DefiantCE
+    	if(this == Block.getBlockById(14))
+    		return true;
+    	if(this == Block.getBlockById(15))
+    		return true;
+    	if(this == Block.getBlockById(16))
+    		return true;
+    	if(this == Block.getBlockById(17))
+    		return true;
+    	if(this == Block.getBlockById(21))
+    		return true;
+    	if(this == Block.getBlockById(56))
+    		return true;
+    	if(this == Block.getBlockById(73))
+    		return true;
+    	if(this == Block.getBlockById(74))
+    		return true;
+    	if(this == Block.getBlockById(129))
+    		return true;
+    	if(this == Block.getBlockById(153))
+    		return true;
+    	if(this == Block.getBlockById(8))
+    		return true;
+    	if(this == Block.getBlockById(9))
+    		return true;
+    	if(this == Block.getBlockById(10))
+    		return true;
+    	if(this == Block.getBlockById(11))
+    		return true;
+    		if(Xray.enabled)
+    			return false;
+    	
         return side == EnumFacing.DOWN && this.minY > 0.0D ? true : (side == EnumFacing.UP && this.maxY < 1.0D ? true : (side == EnumFacing.NORTH && this.minZ > 0.0D ? true : (side == EnumFacing.SOUTH && this.maxZ < 1.0D ? true : (side == EnumFacing.WEST && this.minX > 0.0D ? true : (side == EnumFacing.EAST && this.maxX < 1.0D ? true : !worldIn.getBlockState(pos).getBlock().isOpaqueCube())))));
     }
 
